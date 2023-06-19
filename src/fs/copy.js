@@ -5,7 +5,6 @@ import fs from 'fs';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-
 const copy = async () => {
   fs.stat(path.resolve(__dirname, 'files_copy'), (err) => {
     if (!err) {
