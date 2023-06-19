@@ -1,5 +1,9 @@
+import { stdin, stdout } from 'process';
+import stream from 'stream';
+
+
 const transform = async () => {
-    // Write your code here 
+  stdin.on('data', data => stdout.write(data.toString().toLocaleUpperCase()))
 };
 
 await transform();
