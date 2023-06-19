@@ -2,7 +2,6 @@ import os from 'os';
 import { Worker } from 'worker_threads';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { rejects } from 'assert';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,7 +15,7 @@ const performCalculations = async () => {
       status: 'resolved',
       data: message
     }));
-    worker.on('error', (err) => resolve( {
+    worker.on('error', () => resolve( {
       status: 'error',
       data: null
     }));
