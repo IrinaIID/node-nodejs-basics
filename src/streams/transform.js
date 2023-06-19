@@ -1,9 +1,16 @@
-import { stdin, stdout } from 'process';
-import stream from 'stream';
-
+import { Transform } from 'stream';
+import { pipeline } from 'stream/promises';
 
 const transform = async () => {
-  stdin.on('data', data => stdout.write(data.toString().toLocaleUpperCase()))
+  const { stdin, stdout } = process;
+
+  const transform = new Transform({
+    transform(data, encoding, callback) {
+      callback(null, data.toString().split('').reverse().join(''));
+    },
+  });
+
+  pipeline(stdin, transform, stdout);
 };
 
 await transform();
